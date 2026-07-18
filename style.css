@@ -1,153 +1,82 @@
 body{
 
-margin:0;
 font-family:Arial;
-background:#0f172a;
-color:white;
+
+background:#eef2f5;
+
+margin:0;
 
 }
 
 
 header{
 
+background:#111;
+
+color:white;
+
+padding:40px;
+
 text-align:center;
-padding:30px;
-background:#1e293b;
 
 }
 
 
 
-.login,
-.add,
-.stats,
-.calendarBox{
+.card{
 
-max-width:900px;
-margin:20px auto;
-padding:20px;
-background:#1e293b;
-border-radius:20px;
+background:white;
+
+max-width:600px;
+
+margin:30px auto;
+
+padding:25px;
+
+border-radius:15px;
+
+box-shadow:0 3px 10px #0003;
 
 }
 
 
 
-input,
-select,
-button{
+input{
+
+width:100%;
 
 padding:12px;
-border-radius:10px;
-border:none;
-margin:5px;
-font-size:16px;
+
+margin:8px 0;
+
+box-sizing:border-box;
 
 }
+
 
 
 button{
 
-background:#22c55e;
+background:#111;
+
 color:white;
+
+padding:12px 20px;
+
+border:0;
+
+border-radius:8px;
+
 cursor:pointer;
 
-}
-
-
-
-.hidden{
-
-display:none;
+margin:5px;
 
 }
 
 
 
-.week,
-.calendar{
+button:hover{
 
-display:grid;
-grid-template-columns:repeat(7,1fr);
-gap:8px;
-
-}
-
-
-
-.week div{
-
-text-align:center;
-
-}
-
-
-
-.day{
-
-background:#334155;
-min-height:120px;
-padding:10px;
-border-radius:10px;
-
-}
-
-
-
-.event{
-
-padding:8px;
-margin-top:8px;
-border-radius:8px;
-font-size:13px;
-
-}
-
-
-
-.Johan{
-
-background:#2563eb;
-
-}
-
-
-.Tilda{
-
-background:#db2777;
-
-}
-
-
-.Julia{
-
-background:#16a34a;
-
-}
-
-
-.Ulrika{
-
-background:#9333ea;
-
-}
-
-
-
-@media(max-width:600px){
-
-.calendar{
-
-grid-template-columns:repeat(7,1fr);
-
-}
-
-
-.day{
-
-min-height:80px;
-font-size:12px;
-
-}
+opacity:.8;
 
 }
