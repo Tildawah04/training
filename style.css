@@ -1,101 +1,153 @@
-body {
-    margin:0;
-    font-family:Arial, sans-serif;
-    background:#111827;
-    color:white;
+body{
+
+margin:0;
+font-family:Arial;
+background:#0f172a;
+color:white;
+
 }
 
 
-header {
-    text-align:center;
-    padding:30px;
-    background:#1f2937;
+header{
+
+text-align:center;
+padding:30px;
+background:#1e293b;
+
 }
 
 
-.profiles {
-    display:flex;
-    gap:20px;
-    justify-content:center;
-    padding:25px;
-    flex-wrap:wrap;
+
+.login,
+.add,
+.stats,
+.calendarBox{
+
+max-width:900px;
+margin:20px auto;
+padding:20px;
+background:#1e293b;
+border-radius:20px;
+
 }
 
 
-.profile {
-    background:#374151;
-    padding:20px;
-    border-radius:15px;
-    width:200px;
-    text-align:center;
+
+input,
+select,
+button{
+
+padding:12px;
+border-radius:10px;
+border:none;
+margin:5px;
+font-size:16px;
+
 }
 
 
-.calendar-container {
-    max-width:900px;
-    margin:auto;
-    padding:20px;
+button{
+
+background:#22c55e;
+color:white;
+cursor:pointer;
+
 }
 
 
-#month {
-    text-align:center;
+
+.hidden{
+
+display:none;
+
 }
 
 
-.calendar {
-    display:grid;
-    grid-template-columns:repeat(7,1fr);
-    gap:8px;
+
+.week,
+.calendar{
+
+display:grid;
+grid-template-columns:repeat(7,1fr);
+gap:8px;
+
 }
 
 
-.day {
-    min-height:100px;
-    background:#1f2937;
-    border-radius:10px;
-    padding:10px;
+
+.week div{
+
+text-align:center;
+
 }
 
 
-.day h4 {
-    margin:0;
+
+.day{
+
+background:#334155;
+min-height:120px;
+padding:10px;
+border-radius:10px;
+
 }
 
 
-.training {
-    margin-top:8px;
-    padding:6px;
-    border-radius:8px;
-    font-size:13px;
+
+.event{
+
+padding:8px;
+margin-top:8px;
+border-radius:8px;
+font-size:13px;
+
 }
 
 
-.strength {
-    background:#2563eb;
+
+.Johan{
+
+background:#2563eb;
+
 }
 
 
-.run {
-    background:#16a34a;
+.Tilda{
+
+background:#db2777;
+
 }
 
 
-.cardio {
-    background:#dc2626;
+.Julia{
+
+background:#16a34a;
+
 }
 
 
-.legend {
-    text-align:center;
-    margin:30px;
+.Ulrika{
+
+background:#9333ea;
+
 }
 
 
-.legend span {
-    display:inline-block;
-    width:15px;
-    height:15px;
-    border-radius:50%;
-    margin:0 5px;
+
+@media(max-width:600px){
+
+.calendar{
+
+grid-template-columns:repeat(7,1fr);
+
+}
+
+
+.day{
+
+min-height:80px;
+font-size:12px;
+
+}
+
 }
