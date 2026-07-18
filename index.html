@@ -2,10 +2,12 @@
 <html lang="sv">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Träningsappen</title>
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Träningsgruppen</title>
 
 <link rel="stylesheet" href="style.css">
 
@@ -17,114 +19,38 @@
 
 <header>
 
-<h1>🏋️ Träningsappen</h1>
+<h1>🏋️ Träningsgruppen</h1>
 
-<p id="welcome">
-Välj användare
-</p>
+<p>Din digitala träningsplattform</p>
+
+<a href="login.html">
+<button>Logga in</button>
+</a>
+
 
 </header>
 
 
 
-<section class="login">
+<section class="card">
 
-<h2>Välj profil</h2>
+<h2>Funktioner</h2>
 
-<select id="userSelect">
+<ul>
 
-<option value="">-- Välj --</option>
-<option>Johan</option>
-<option>Tilda</option>
-<option>Julia</option>
-<option>Ulrika</option>
+<li>Skapa egen profil</li>
 
-</select>
+<li>Sätt träningsmål</li>
 
+<li>Gemensam kalender</li>
 
-<button onclick="login()">
-Logga in
-</button>
+<li>Följ träningsstatistik</li>
+
+</ul>
 
 
 </section>
 
-
-
-
-
-<section id="app" class="hidden">
-
-
-<div class="stats">
-
-<h2>Statistik</h2>
-
-<p id="total"></p>
-<p id="monthTotal"></p>
-<p id="last"></p>
-
-</div>
-
-
-
-
-
-<div class="add">
-
-
-<h2>Nytt träningspass</h2>
-
-
-<input 
-id="date"
-type="date">
-
-
-<input 
-id="training"
-placeholder="Träning">
-
-
-<button onclick="addTraining()">
-Spara
-</button>
-
-
-</div>
-
-
-
-
-
-<div class="calendarBox">
-
-<h2 id="month"></h2>
-
-
-<div class="week">
-
-<div>Mån</div>
-<div>Tis</div>
-<div>Ons</div>
-<div>Tors</div>
-<div>Fre</div>
-<div>Lör</div>
-<div>Sön</div>
-
-</div>
-
-
-<div id="calendar" class="calendar"></div>
-
-
-</div>
-
-
-</section>
-
-
-<script src="script.js"></script>
 
 </body>
 
