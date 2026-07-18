@@ -1,52 +1,131 @@
+<!DOCTYPE html>
+<html lang="sv">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Team Training</title>
+
+<title>Träningsappen</title>
+
 <link rel="stylesheet" href="style.css">
+
 </head>
+
 
 <body>
 
+
 <header>
-    <h1>🏋️ Team Training</h1>
-    <p>Träningskalender & statistik</p>
+
+<h1>🏋️ Träningsappen</h1>
+
+<p id="welcome">
+Välj användare
+</p>
+
 </header>
 
-<section class="profiles">
-    <div class="profile">
-        <h3>Alex</h3>
-        <p>Styrka & Kondition</p>
-    </div>
 
-    <div class="profile">
-        <h3>Emma</h3>
-        <p>Löpning & Rörlighet</p>
-    </div>
 
-    <div class="profile">
-        <h3>Johan</h3>
-        <p>Gym & Intervaller</p>
-    </div>
+<section class="login">
+
+<h2>Välj profil</h2>
+
+<select id="userSelect">
+
+<option value="">-- Välj --</option>
+<option>Johan</option>
+<option>Tilda</option>
+<option>Julia</option>
+<option>Ulrika</option>
+
+</select>
+
+
+<button onclick="login()">
+Logga in
+</button>
+
+
 </section>
 
 
-<section class="calendar-container">
+
+
+
+<section id="app" class="hidden">
+
+
+<div class="stats">
+
+<h2>Statistik</h2>
+
+<p id="total"></p>
+<p id="monthTotal"></p>
+<p id="last"></p>
+
+</div>
+
+
+
+
+
+<div class="add">
+
+
+<h2>Nytt träningspass</h2>
+
+
+<input 
+id="date"
+type="date">
+
+
+<input 
+id="training"
+placeholder="Träning">
+
+
+<button onclick="addTraining()">
+Spara
+</button>
+
+
+</div>
+
+
+
+
+
+<div class="calendarBox">
 
 <h2 id="month"></h2>
 
-<div class="calendar" id="calendar"></div>
+
+<div class="week">
+
+<div>Mån</div>
+<div>Tis</div>
+<div>Ons</div>
+<div>Tors</div>
+<div>Fre</div>
+<div>Lör</div>
+<div>Sön</div>
+
+</div>
+
+
+<div id="calendar" class="calendar"></div>
+
+
+</div>
+
 
 </section>
-
-
-<div class="legend">
-    <span class="strength"></span> Styrka
-    <span class="run"></span> Löpning
-    <span class="cardio"></span> Kondition
-</div>
 
 
 <script src="script.js"></script>
 
 </body>
+
 </html>
