@@ -40,15 +40,15 @@ addDoc(
 collection(db,"workouts"),
 
 {
-
+userId:user.uid,
 
 user:user.email,
+
+groupId:"DIN_GRUPP_ID",
 
 date:date.value,
 
 training:training.value
-
-
 }
 
 
