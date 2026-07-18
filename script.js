@@ -1,117 +1,240 @@
-const trainings = {
+let currentUser="";
 
-"2026-07-03":[
-    {
-        name:"Alex",
-        workout:"Styrketräning",
-        type:"strength"
-    }
-],
 
-"2026-07-08":[
-    {
-        name:"Emma",
-        workout:"5 km löpning",
-        type:"run"
-    }
-],
+let users={
 
-"2026-07-12":[
-    {
-        name:"Johan",
-        workout:"Intervaller",
-        type:"cardio"
-    }
-],
-
-"2026-07-18":[
-    {
-        name:"Alex",
-        workout:"Gym överkropp",
-        type:"strength"
-    },
-    {
-        name:"Emma",
-        workout:"Rörlighet",
-        type:"run"
-    }
-]
+Johan:"#2563eb",
+Tilda:"#db2777",
+Julia:"#16a34a",
+Ulrika:"#9333ea"
 
 };
 
 
 
-const calendar = document.getElementById("calendar");
-const monthTitle = document.getElementById("month");
+let trainings =
+JSON.parse(localStorage.getItem("trainings"))
+|| {};
 
 
-let date = new Date();
-
-let year = date.getFullYear();
-let month = date.getMonth();
 
 
-monthTitle.innerHTML =
-date.toLocaleString("sv-SE", {
+function login(){
+
+
+currentUser =
+document.getElementById("userSelect").value;
+
+
+
+if(currentUser==="") return;
+
+
+
+document.getElementById("app")
+.classList.remove("hidden");
+
+
+document.getElementById("welcome")
+.innerHTML =
+"Loggad in som "+currentUser;
+
+
+updateStats();
+
+renderCalendar();
+
+
+}
+
+
+
+
+
+function addTraining(){
+
+
+let date =
+document.getElementById("date").value;
+
+
+let workout =
+document.getElementById("training").value;
+
+
+
+if(!date || !workout){
+
+alert("Fyll i allt");
+
+return;
+
+}
+
+
+
+
+if(!trainings[date])
+trainings[date]=[];
+
+
+
+
+trainings[date].push({
+
+person:currentUser,
+
+workout:workout
+
+});
+
+
+
+save();
+
+
+renderCalendar();
+
+updateStats();
+
+
+}
+
+
+
+
+function save(){
+
+localStorage.setItem(
+
+"trainings",
+
+JSON.stringify(trainings)
+
+);
+
+}
+
+
+
+
+
+function renderCalendar(){
+
+
+let calendar =
+document.getElementById("calendar");
+
+
+calendar.innerHTML="";
+
+
+
+let now=new Date();
+
+
+let year=now.getFullYear();
+
+let month=now.getMonth();
+
+
+
+document.getElementById("month")
+.innerHTML =
+now.toLocaleString(
+"sv-SE",
+{
 month:"long",
 year:"numeric"
 });
 
 
 
-let firstDay =
-new Date(year,month,1).getDay();
+
+let start =
+new Date(year,month,1)
+.getDay();
+
+
+
+if(start===0)
+start=7;
+
 
 
 let days =
-new Date(year,month+1,0).getDate();
+new Date(
+year,
+month+1,
+0
+).getDate();
 
 
 
-for(let i=1;i<firstDay;i++){
 
-let empty=document.createElement("div");
-calendar.appendChild(empty);
+for(let i=1;i<start;i++){
+
+calendar.innerHTML+="<div></div>";
 
 }
 
 
 
-for(let d=1; d<=days; d++){
-
-let day=document.createElement("div");
-
-day.className="day";
 
 
-let dateKey =
-`${year}-${String(month+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
+for(let d=1;d<=days;d++){
 
 
-day.innerHTML =
-`<h4>${d}</h4>`;
+let box=document.createElement("div");
+
+box.className="day";
 
 
-if(trainings[dateKey]){
+let key=
+
+year+
+"-"+
+String(month+1).padStart(2,"0")
++
+"-"+
+String(d).padStart(2,"0");
 
 
-trainings[dateKey].forEach(t=>{
+
+box.innerHTML="<b>"+d+"</b>";
 
 
-let workout=document.createElement("div");
 
-workout.className =
-"training "+t.type;
+if(trainings[key]){
 
 
-workout.innerHTML =
+trainings[key].forEach((t,index)=>{
+
+
+let div=document.createElement("div");
+
+
+div.className=
+"event "+t.person;
+
+
+
+div.innerHTML=
+
 `
-<b>${t.name}</b><br>
+<b>${t.person}</b>
+<br>
 ${t.workout}
+<br>
+<button onclick="removeTraining('${key}',${index})">
+❌
+</button>
 `;
 
 
-day.appendChild(workout);
+
+box.appendChild(div);
+
 
 
 });
@@ -120,7 +243,110 @@ day.appendChild(workout);
 }
 
 
-calendar.appendChild(day);
+
+calendar.appendChild(box);
+
+
+
+}
+
+
+
+}
+
+
+
+
+
+function removeTraining(date,index){
+
+
+trainings[date].splice(index,1);
+
+
+
+if(trainings[date].length===0)
+
+delete trainings[date];
+
+
+
+save();
+
+renderCalendar();
+
+updateStats();
+
+}
+
+
+
+
+function updateStats(){
+
+
+let all=[];
+
+
+Object.keys(trainings)
+.forEach(date=>{
+
+
+trainings[date]
+.forEach(t=>{
+
+if(t.person===currentUser)
+
+all.push({
+
+date:date,
+workout:t.workout
+
+});
+
+});
+
+
+});
+
+
+
+document.getElementById("total")
+.innerHTML=
+"Totalt antal pass: "+all.length;
+
+
+
+let month=
+new Date()
+.toISOString()
+.slice(0,7);
+
+
+
+let monthCount=
+all.filter(x=>
+x.date.startsWith(month)
+).length;
+
+
+
+document.getElementById("monthTotal")
+.innerHTML=
+"Pass denna månad: "+monthCount;
+
+
+
+
+document.getElementById("last")
+.innerHTML=
+all.length
+?
+"Senaste: "+
+all[all.length-1].workout
+:
+"Ingen träning ännu";
+
 
 
 }
